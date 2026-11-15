@@ -2,6 +2,8 @@
 
 A proof-of-concept for wallet-identity social networking without cryptocurrency.
 
+**License**: MIT
+
 ## Core Principles
 
 ### Identity = Cryptographic Keys
@@ -43,6 +45,23 @@ Every node independently verifies every signature. Invalid messages die at the f
 - **Storage**: In-memory ledger → needs Merkle trees + snapshots
 - **Fixed rules**: 3 referrals, 3 revokers, 50 words → should be governance parameters
 - **No reputation decay**: Early members have permanent power
+
+## Weaknesses
+
+**Nodes can disagree on membership.**  
+Without a shared order of events, nodes can end up with different member lists. Fixing it needs some form of consensus, which pulls the design back toward blockchain-style coordination.
+
+**Collusion.**  
+A small group can let in fake accounts or remove honest members. Referrals from people you trust only resist fake accounts as long as the people giving them are honest.
+
+**Accountability works against privacy.**  
+Punishing bad referrers requires knowing who they are, which exposes the social graph. Hiding the graph weakens accountability. You can choose a balance, but you can't get both fully.
+
+**Penalties and invite limits work against growth.**  
+Invite supply only shrinks, and members who refer someone take a risk. The network becomes slow and wary of newcomers, and over time it gets harder to join.
+
+**Your key is your identity.**  
+Lose the key and the account, vault and reputation are gone for good. If it's stolen, someone else becomes you. Recovery means trusting other people, such as recovery peers, so trust comes back in somewhere.
 
 ## Running
 
